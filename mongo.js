@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
-const connectionString = process.env.MONGO_DB_URI
+const { MONGO_DB_URI, MONGO_DB_URI_TEST, NODE_ENV } = process.env;
+
+const connectionString = NODE_ENV === 'test'
+  ? process.env.MONGO_DB_URI_TEST
+  : process.env.MONGO_DB_URI;
 
 // comment for students puposes
 if (!connectionString) {
